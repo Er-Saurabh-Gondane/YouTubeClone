@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth.routes.js';
 import channelRoutes from './routes/channel.routes.js';
+import videoRoutes from './routes/video.routes.js';
+import commentRoutes from './routes/comment.routes.js';
 
 const app = express();
 
@@ -17,6 +19,8 @@ app.get('/',(req,res)=>{
 // Routes 
 app.use('/api/auth',authRoutes);
 app.use('/api/channel',channelRoutes);
+app.use('/api/video',videoRoutes);
+app.use('/api/comment',commentRoutes);
 
 
 export default app;
