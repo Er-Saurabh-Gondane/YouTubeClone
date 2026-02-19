@@ -147,7 +147,7 @@ export const dislikeVideo = asyncHandler(async (req, res) => {
   return res.status(200).json({ message: "Disliked video" });
 });
 
-// 🔹 UPDATE VIDEO (title/description/thumbnail/category/videoUrl)
+//  UPDATE VIDEO (title/description/thumbnail/category/videoUrl)
 export const updateVideo = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
@@ -196,5 +196,38 @@ export const updateVideo = asyncHandler(async (req, res) => {
   return res.status(200).json({
     message: "Video updated successfully",
     video: updatedVideo,
+  });
+});
+
+//  DELETE VIDEO
+export const deleteVideo = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.status(404).json({ message: "Video not found" });
+  }
+
+  const channel = await Channel.findById(video.channelId);
+  if (!channel) {
+    return res.status(404).json({ message: "Channel not found" });
+  }
+
+  // only channel owner can delete video
+  if (channel.owner.toString() !== req.user._id.toString()) {
+    return res
+      .status(403)
+      .json({ message: "You are not authorized to delete this video" });
+  }
+
+  await Video.findByIdAndDelete(id);
+
+  // decrease totalVideos count (but not below 0)
+  await Channel.findByIdAndUpdate(channel._id, {
+    $inc: { totalVideos: channel.totalVideos > 0 ? -1 : 0 },
+  });
+
+  return res.status(200).json({
+    message: "Video deleted successfully",
   });
 });
