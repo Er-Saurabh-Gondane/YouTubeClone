@@ -47,3 +47,8 @@ export const login = asyncHandler(async (req, res) => {
     user: { id: user._id, username: user.username, email: user.email, avatar: user.avatar },
   });
 });
+
+export const me = asyncHandler(async (req, res) => {
+  // req.user comes from protect middleware
+  return res.status(200).json({ user: req.user });
+});

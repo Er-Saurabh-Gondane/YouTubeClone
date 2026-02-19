@@ -30,7 +30,3 @@ export const validateLogin = (req, res, next) => {
   next();
 };
 
-export const me = asyncHandler(async (req, res) => {
-  // req.user comes from protect middleware
-  return res.status(200).json({ user: req.user });
-});
