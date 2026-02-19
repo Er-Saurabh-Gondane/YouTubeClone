@@ -12,7 +12,7 @@ export const protect = async (req,res,next) =>{
         }
 
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
-        const user = await User.findById(decoded.id).select("_id username email avatar");
+        const user = await User.findById(decoded.id).select("_id userName email avatar");
 
         if(!user){
             return res.status(401).json({ message: "Not authorized, user not found" });

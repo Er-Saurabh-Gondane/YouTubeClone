@@ -1,9 +1,10 @@
 export const validateRegister = (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { userName, email, password } = req.body;
+   console.log("REGISTER BODY:", req.body);
 
-  if (!username || username.trim().length < 3) {
-    return res.status(400).json({ message: "Username must be at least 3 characters" });
-  }
+ if (!userName || userName.trim().length < 3) {
+  return res.status(400).json({ message: "Username must be at least 3 characters" });
+}
 
   const emailOk = typeof email === "string" && email.includes("@");
   if (!emailOk) {
