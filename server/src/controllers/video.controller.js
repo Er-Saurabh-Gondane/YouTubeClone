@@ -146,3 +146,55 @@ export const dislikeVideo = asyncHandler(async (req, res) => {
 
   return res.status(200).json({ message: "Disliked video" });
 });
+
+// 🔹 UPDATE VIDEO (title/description/thumbnail/category/videoUrl)
+export const updateVideo = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.status(404).json({ message: "Video not found" });
+  }
+
+  // fetch channel to verify owner
+  const channel = await Channel.findById(video.channelId);
+  if (!channel) {
+    return res.status(404).json({ message: "Channel not found" });
+  }
+
+  // only channel owner can update video
+  if (channel.owner.toString() !== req.user._id.toString()) {
+    return res
+      .status(403)
+      .json({ message: "You are not authorized to update this video" });
+  }
+
+  const {
+    title,
+    description,
+    videoUrl,
+    thumbnailUrl,
+    category,
+  } = req.body;
+
+  // build partial update object
+  const updateData = {};
+  if (title !== undefined) updateData.title = title;
+  if (description !== undefined) updateData.description = description;
+  if (videoUrl !== undefined) updateData.videoUrl = videoUrl;
+  if (thumbnailUrl !== undefined) updateData.thumbnailUrl = thumbnailUrl;
+  if (category !== undefined) updateData.category = category;
+
+  const updatedVideo = await Video.findByIdAndUpdate(
+    id,
+    { $set: updateData },
+    { new: true }
+  )
+    .populate("channelId", "name bannerImage subscribersCount")
+    .populate("uploader", "userName avatar");
+
+  return res.status(200).json({
+    message: "Video updated successfully",
+    video: updatedVideo,
+  });
+});
