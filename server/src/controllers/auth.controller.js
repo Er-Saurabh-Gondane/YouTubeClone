@@ -18,7 +18,7 @@ export const register = asyncHandler(async (req,res)=>{
     // in backend we just send success message
     return res.status(201).json({
         message:"Registration successfully...Please Login..",
-        user:{id:user._id,userName:user.userName,email:user.email,avatar:user.avatar},
+        user:{id:user._id,userName:user.userName,email:user.email,password:user.password,avatar:user.avatar},
     });
 
 

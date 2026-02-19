@@ -44,8 +44,9 @@ userSchema.pre('save', async function () {
 });
 
 // compare password
-userSchema.method.comparePassword = function (plainPassword){
+userSchema.methods.comparePassword = function (plainPassword){
     return bcrypt.compare(plainPassword,this.password);
 }
+
 
 export default model("User",userSchema);
