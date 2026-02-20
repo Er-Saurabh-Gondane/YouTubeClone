@@ -1,8 +1,14 @@
 import React from 'react'
 
+import Navbar from './components/Navbar.jsx'
+import Sidebar from './components/Sidebar.jsx'
+
 function App() {
   return (
-    <div className='text-4xl text-blue-800 font-bold'>App</div>
+    <div >
+      <Navbar/>
+      <Sidebar/>
+    </div>
   )
 }
 
