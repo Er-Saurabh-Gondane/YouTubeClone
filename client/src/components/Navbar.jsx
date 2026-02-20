@@ -7,13 +7,17 @@ import { IoMicOutline } from "react-icons/io5";
 import { RiVideoAddLine } from "react-icons/ri";
 import { FaRegBell } from "react-icons/fa";
 import profile from "../assets/gerard.png";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <div className="flex justify-between items-center px-6 py-2">
       <div className="flex items-center gap-4">
         <AiOutlineMenu className="text-2xl cursor-pointer font-bold" />
-        <img src={logo} alt="" className="cursor-pointer w-28" />
+        <Link to={'/'}>
+         <img src={logo} alt="" className="cursor-pointer w-28" />
+        </Link>
+       
       </div>
       <div className="flex w-[35%]  items-center">
         <div className="w-full border-[0.5px] border-l border-y border-gray-400 rounded-l-full px-10 cursor-pointer   py-2">
