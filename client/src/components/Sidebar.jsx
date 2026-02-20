@@ -15,7 +15,6 @@ import { SiTrendmicro } from "react-icons/si";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { PiFilmSlateLight } from "react-icons/pi";
 import { CgMediaLive } from "react-icons/cg";
-import { SiYoutubegaming } from "react-icons/si";
 import { FaRegNewspaper } from "react-icons/fa";
 import { TfiCup } from "react-icons/tfi";
 import { PiLightbulbLight } from "react-icons/pi";
@@ -154,19 +153,25 @@ function Sidebar() {
   ];
   return (
     <div className="px-6 w-[17%] h-[calc(100vh-6.625rem)] overflow-y-scroll overflow-x-hidden ">
-      {/* Home */}
-      <div className=" space-y-3 items-center">
-        {sidebarItems.map((item) => {
-          return (
-            <div
-              key={item.id}
-              className="flex items-center space-x-6 hover:bg-gray-300 duration-300 rounded-xl p-1"
-            >
-              <div className="text-xl cursor-pointer">{item.icon}</div>
-              <span className="cursor-pointer">{item.name}</span>
-            </div>
-          );
-        })}
+      
+      <div className="space-y-3 items-center">
+        {/* HOME */}
+        <div className="flex items-center space-x-6 hover:bg-gray-300 duration-300 rounded-xl p-1 cursor-pointer">
+          <GoHome className="text-xl" />
+          <span>Home</span>
+        </div>
+
+        {/* SHORTS */}
+        <div className="flex items-center space-x-6 hover:bg-gray-300 duration-300 rounded-xl p-1 cursor-pointer">
+          <SiYoutubeshorts className="text-xl" />
+          <span>Shorts</span>
+        </div>
+
+        {/* SUBSCRIPTIONS */}
+        <div className="flex items-center space-x-6 hover:bg-gray-300 duration-300 rounded-xl p-1 cursor-pointer">
+          <MdOutlineSubscriptions className="text-xl" />
+          <span>Subscriptions</span>
+        </div>
       </div>
       <br />
       <hr />
@@ -237,7 +242,7 @@ function Sidebar() {
         <br /> Test new features
       </span>
       <br />
-      <p className="text-xs text-gray-500 mt-3">© 2024 Learn Coding</p>
+      <p className="text-xs text-gray-500 mt-3">© 2026 YouTube Clone SG</p>
     </div>
   );
 }
