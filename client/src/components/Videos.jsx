@@ -1,16 +1,19 @@
+// src/components/Videos.jsx
 import React from "react";
-import { Link } from "react-router-dom";
 
 function Videos({ item }) {
-  const { _id, title, thumbnailUrl, channelId, views, createdAt } = item;
+  const {
+    title,
+    thumbnailUrl,
+    channelId,
+    views,
+    createdAt,
+  } = item;
 
   return (
-    <Link
-      to={`/watch/${_id}`}
-      className="cursor-pointer block"
-    >
+    <div className="cursor-pointer">
       {/* Thumbnail */}
-      <div className="overflow-hidden rounded-xl bg-gray-100">
+      <div className="overflow-hidden rounded-xl bg-black">
         <img
           src={thumbnailUrl}
           alt={title}
@@ -20,17 +23,17 @@ function Videos({ item }) {
 
       {/* Text under thumbnail */}
       <div className="mt-2">
-        <p className="text-sm font-semibold text-black line-clamp-2">
+        <p className="text-sm font-medium  line-clamp-2">
           {title}
         </p>
-        <p className="text-xs text-gray-600">
+        <p className="text-xs text-black">
           {channelId?.name}
         </p>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-neutral-500">
           {views} views · {new Date(createdAt).toLocaleDateString()}
         </p>
       </div>
-    </Link>
+    </div>
   );
 }
 

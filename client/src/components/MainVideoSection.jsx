@@ -1,21 +1,24 @@
-// src/components/MainVideoSection.jsx
+
 import React from "react";
-import ReactPlayer from "react-player";
+import { getYouTubeEmbedUrl } from "../utlis/getEmgetEmbedUrl.js"; // or define it locally
 
 function MainVideoSection({ video }) {
   const { title, videoUrl, channelId, views, createdAt, description } = video;
 
+  const embedUrl = getYouTubeEmbedUrl(videoUrl);
+  console.log("Embed URL:", embedUrl);
+
   return (
     <div className="w-full">
-      {/* Video player */}
-      <div className="w-full aspect-video bg-black rounded-xl overflow-hidden">
-        <ReactPlayer
-          url={videoUrl}
-          width="100%"
-          height="100%"
-          controls
-          playing={false}
-          style={{ backgroundColor: "#000" }}
+      {/* Video player box */}
+      <div className="w-full bg-black rounded-xl overflow-hidden
+                      h-55 sm:h-75 md:h-105 lg:h-120">
+        <iframe
+          src={embedUrl}
+          title={title}
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
         />
       </div>
 
@@ -36,7 +39,7 @@ function MainVideoSection({ video }) {
         </div>
       </div>
 
-      {/* Description (scrollable box) */}
+      {/* Description */}
       <div className="mt-3 bg-gray-100 rounded-xl p-3 text-sm text-gray-800 max-h-40 overflow-y-auto">
         {description}
       </div>
