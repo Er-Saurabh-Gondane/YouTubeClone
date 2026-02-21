@@ -11,7 +11,7 @@ function SuggestedVideoCard({ item }) {
       className="flex gap-3 cursor-pointer group"
     >
       {/* Thumbnail */}
-      <div className="w-40 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-gray-200">
+      <div className="w-40 h-24 shrink-0 rounded-lg overflow-hidden bg-gray-200">
         <img
           src={thumbnailUrl}
           alt={title}

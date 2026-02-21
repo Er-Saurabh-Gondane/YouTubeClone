@@ -82,7 +82,7 @@ function Watch({ isSidebarOpen }) {
             </div>
 
             {/* Suggested / related videos on the right */}
-            <aside className="w-full lg:w-[380px] xl:w-[420px] space-y-3">
+            <aside className="w-full lg:w-95 xl:w-105 space-y-3">
               {related.map((item) => (
                 <SuggestedVideoCard key={item._id} item={item} />
               ))}
