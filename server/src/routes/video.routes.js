@@ -9,6 +9,8 @@ import {
   increaseViews,
   likeVideo,
   dislikeVideo,
+  deleteVideo,
+  updateVideo,
 } from "../controllers/video.controller.js";
 
 const router = Router();
@@ -36,5 +38,11 @@ router.post("/likeVideo/:id", protect, likeVideo);
 
 // DISLIKE VIDEO
 router.post("/dislikeVideo/:id", protect, dislikeVideo);
+
+// UPDATE VIDEO
+router.patch('/updateVideo',protect,updateVideo);
+
+// DELETE VIDEO
+router.delete('/deleteVideo',protect,deleteVideo);
 
 export default router;
