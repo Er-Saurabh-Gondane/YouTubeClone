@@ -152,7 +152,7 @@ function Sidebar() {
     },
   ];
   return (
-    <div className="px-6 w-[27%] h-screen overflow-y-scroll overflow-x-hidden ">
+    <div className="px-6 w-[27%] h-[calc(100vh-6.625rem)] overflow-y-scroll overflow-x-hidden ">
       
       <div className="space-y-3 items-center">
         {/* HOME */}
